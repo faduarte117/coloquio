@@ -315,20 +315,23 @@ main {
 /* 8. Tabla Programa (Consolidado y limpio) */
 /* ========================================================================= */
 .programa table {
-    width: 100%;
+    width: 100%; /* Ocupa el 100% del contenedor */
     border-collapse: collapse;
     margin: 20px 0;
     font-family: Arial, sans-serif;
-    background-color: #ffffff; /* Fondo blanco */
-    color: #000000;            /* Letras negras */
+    background-color: #ffffff;
+    color: #000000;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
     overflow: hidden;
+    /* >> CAMBIO AÑADIDO: Aumenta el tamaño de la letra general de la tabla << */
+    font-size: 1.1em; 
 }
 
 .programa th, .programa td {
     border: 1px solid #333;
-    padding: 10px 12px;
+    /* >> CAMBIO AÑADIDO: Aumenta el padding para hacer las filas más altas << */
+    padding: 12px 15px; 
     text-align: left;
 }
 
@@ -353,7 +356,6 @@ main {
     font-weight: bold;
     background-color: #e0e0e0;
 }
-
 
 /* ========================================================================= */
 /* 9. Póster */
@@ -487,3 +489,4 @@ footer {
     padding: 12px 15px; /* Aumenta el espaciado interno (arriba/abajo: 12px, izquierda/derecha: 15px) */
     text-align: left;
 }
+
