@@ -23,7 +23,7 @@ body {
 /* Hero Header */
 .hero {
     position: relative;
-    width: 100%;
+    width: 50%;
     min-height: 100vh;
 
     background-image: url("fondo2.jpeg");
@@ -504,3 +504,4 @@ footer {
 
 /* Forzar salto instantáneo */
 html, body {scroll-behavior: auto !important;}
+
