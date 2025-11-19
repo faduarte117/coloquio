@@ -26,7 +26,7 @@ body {
     width: 50%;
     min-height: 100vh;
 
-    background-image: url("fondo2.jpeg");
+    background-image: url("fondo.jpeg");
     background-size: cover;       /* fondo cubre toda la pantalla sin deformarse */
     background-position: center;  /* centra la imagen */
     background-repeat: no-repeat; /* nunca repetir */
@@ -39,7 +39,7 @@ body {
     overflow: hidden;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
     .hero {
         background-attachment: scroll !important;
         background-position: center top;
@@ -504,4 +504,5 @@ footer {
 
 /* Forzar salto instantáneo */
 html, body {scroll-behavior: auto !important;}
+
 
