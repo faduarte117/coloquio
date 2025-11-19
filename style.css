@@ -475,3 +475,15 @@ footer {
     /* Nota: Se eliminó el media query complejo para la tabla que usaba `.tabla-programa`
        ya que la nueva tabla con `.programa` no lo necesita. */
 }
+
+.programa table {
+    width: 100%; /* Hace que la tabla ocupe el 100% del ancho de su contenedor (.programa) */
+    border-collapse: collapse; /* Para que las líneas de la tabla se vean mejor */
+    font-size: 1.1em; /* Incrementa el tamaño de la letra un poco */
+}
+
+.programa th,
+.programa td {
+    padding: 12px 15px; /* Aumenta el espaciado interno (arriba/abajo: 12px, izquierda/derecha: 15px) */
+    text-align: left;
+}
