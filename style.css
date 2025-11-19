@@ -1,13 +1,10 @@
-/* Reset básico */
+/* ========================================================================= */
+/* 1. Reset Básico y Estilos Globales */
+/* ========================================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Transicion de cambio  */
-html {
-    scroll-behavior: auto;
 }
 
 body {
@@ -18,51 +15,48 @@ body {
     position: relative;
 }
 
+/* Forzar salto instantáneo (Resuelve el conflicto de scroll) */
+html, body {
+    scroll-behavior: auto !important;
+}
 
-
-/* Hero Header */
+/* ========================================================================= */
+/* 2. Hero Header (Pantalla de inicio) */
+/* ========================================================================= */
 .hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
-
+    /* Fondo */
     background-image: url("fondo.jpeg");
-    background-size: cover;       /* fondo cubre toda la pantalla sin deformarse */
-    background-position: center;  /* centra la imagen */
-    background-repeat: no-repeat; /* nunca repetir */
-    background-attachment: scroll; /* evita fallos en celulares */
-
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    aspect-ratio: 16/9; /* Fuerza proporción correcta en monitores */
+    /* Layout */
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     overflow: hidden;
+    z-index: 0; /* Base: fondo */
 }
 
-@media (max-width: 1920px) {
-    .hero {
-        background-attachment: scroll !important;
-        background-position: center top;
-    }
-}
-
-
-
-
-
-
+/* Overlay (Capa oscura sobre la imagen) */
 .hero::before {
     content: "";
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0.5,0.5,0.5,0.5);
-    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Detrás del texto, delante del fondo */
 }
 
+/* Contenido (Texto y botones) */
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2; /* Encima del overlay */
     text-align: center;
     opacity: 0;
     transform: translateY(50px);
@@ -76,40 +70,94 @@ body {
     }
 }
 
+/* LOGOS FIJOS (Al frente de todo) */
+.hero-logos-fixed {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    pointer-events: none;
+    z-index: 10; /* Máxima capa: encima de overlay y texto */
+}
+
+.hero-logos-fixed img {
+    width: 150px;
+    height: auto;
+    pointer-events: auto;
+}
+
+.iyq-scale {
+    transform: scale(1.5);
+    transform-origin: top right;
+}
+
+/* Crédito de imagen */
+.hero-credit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+}
+
+/* Imagen de Ley Koo */
+.hero-image {
+    width: 250px;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.semblanza-link a {
+    color: beige;
+    font-weight: bold;
+}
+
+/* ========================================================================= */
+/* 3. Tipografía del Hero (Tamaños finales) */
+/* ========================================================================= */
+
+/* Se eliminaron los estilos h1, h2 y h3 iniciales duplicados (líneas 70-79 del archivo original) */
+
 .hero-content h1 {
-    font-size: 5rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 20px; /* Añadido de la regla inicial */
 }
 
 .hero-content h2 {
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 3rem;
+    font-weight: 500;
     margin-bottom: 15px;
-    color: #f5f5dc; 
+    color: #f5f5dc;
 }
 
 .hero-content h3 {
-    font-size: 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 500;
     margin-bottom: 30px;
     color: #f5f5dc;
 }
 
-.hero-content .btn {
-    padding: 15px 35px;
-    font-size: 1.3rem;
-    background-color: #f5f5dc;
-    color: #000;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: 0.3s;
+.hero-content h4 {
+    font-size: 1.8rem;
+    font-weight: 400;
 }
 
-.hero-content .btn:hover {
-    background-color: #162456;
+.hero-content h5 {
+    font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
 }
 
-/* Nav sobre hero */
+
+/* ========================================================================= */
+/* 4. Navegación */
+/* ========================================================================= */
 .hero nav {
     position: absolute;
     top: 20px;
@@ -135,7 +183,9 @@ body {
     color: #f5f5dc;
 }
 
-/* Main content */
+/* ========================================================================= */
+/* 5. Contenido Principal y Tarjetas */
+/* ========================================================================= */
 main {
     max-width: 1000px;
     margin: 40px auto;
@@ -173,13 +223,20 @@ main {
     margin-bottom: 10px;
 }
 
-/* Botones */
+.justificado {
+    text-align: justify;
+}
+
+/* ========================================================================= */
+/* 6. Botones (General y Hero) */
+/* ========================================================================= */
+
 .btn {
     display: inline-block;
     padding: 12px 25px;
     margin-top: 15px;
-    background-color: #f5f5dc; 
-    color: #000; 
+    background-color: #f5f5dc;
+    color: #000;
     text-decoration: none;
     border-radius: 10px;
     font-weight: bold;
@@ -190,7 +247,25 @@ main {
     background-color: #e6c200;
 }
 
-/* Grid de ponentes */
+/* Botón especial del Hero */
+.hero-content .btn {
+    padding: 15px 35px;
+    font-size: 1.3rem;
+    background-color: #f5f5dc;
+    color: #000;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-content .btn:hover {
+    background-color: #162456;
+}
+
+/* ========================================================================= */
+/* 7. Ponentes */
+/* ========================================================================= */
 .ponentes-grid {
     display: flex;
     flex-wrap: wrap;
@@ -219,7 +294,7 @@ main {
 }
 
 .ponente h3 a {
-    color: #ffd700;       
+    color: #ffd700;
     text-decoration: none;
     transition: 0.3s;
 }
@@ -236,121 +311,9 @@ main {
     transform: translateY(-10px);
 }
 
-/* Logos */
-.logos-section {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: rgba(0,0,0,0.6);
-    border-radius: 20px;
-}
-
-.logos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 150px; 
-}
-
-.logos-container img {
-    width: 150px;  
-    height: 100px; 
-    object-fit: contain;
-    transition: transform 0.3s;
-}
-
-.logos-container img:hover {
-    transform: scale(1.1);
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 25px;
-    background-color: #162456;
-}
-
-/* Texto justificado */
-.justificado {
-    text-align: justify;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 3.5rem;
-    }
-    .hero-content h2 {
-        font-size: 1.5rem;
-    }
-    .hero-content h3 {
-        font-size: 1.2rem;
-    }
-    .hero-content .btn {
-        font-size: 1rem;
-        padding: 12px 25px;
-    }
-    .logos-container {
-        gap: 50px;
-    }
-    .logos-container img {
-        width: 120px;
-        height: 80px;
-    }
-}
-.tabla-programa table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.tabla-programa th, .tabla-programa td {
-    border: 1px solid #f5f5dc;
-    padding: 10px;
-    text-align: center;
-    color: #f5f5dc;
-}
-
-.tabla-programa th {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-size: 1.1rem;
-}
-
-.tabla-programa tr:nth-child(even) {
-    background-color: rgba(255,255,255,0.05);
-}
-
-.tabla-programa tr:hover {
-    background-color: rgba(255,255,255,0.15);
-}
-
-@media (max-width: 768px) {
-    .tabla-programa table, .tabla-programa thead, .tabla-programa tbody, .tabla-programa th, .tabla-programa td, .tabla-programa tr {
-        display: block;
-    }
-
-    .tabla-programa tr {
-        margin-bottom: 15px;
-    }
-
-    .tabla-programa td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-    }
-
-    .tabla-programa td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 50%;
-        padding-left: 10px;
-        font-weight: bold;
-        text-align: left;
-    }
-}
-
-/* Sección Programa */
+/* ========================================================================= */
+/* 8. Tabla Programa (Consolidado y limpio) */
+/* ========================================================================= */
 .programa table {
     width: 100%;
     border-collapse: collapse;
@@ -358,86 +321,43 @@ footer {
     font-family: Arial, sans-serif;
     background-color: #ffffff; /* Fondo blanco */
     color: #000000;            /* Letras negras */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra ligera para destacar */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .programa th, .programa td {
-    border: 1px solid #333; /* Bordes visibles */
+    border: 1px solid #333;
     padding: 10px 12px;
     text-align: left;
 }
 
 .programa th {
-    background-color: #f0f0f0; /* Cabecera gris claro */
-    color: #000000;             /* Letras negras */
+    background-color: #f0f0f0;
+    color: #000000;
     text-align: center;
     font-weight: bold;
 }
 
 .programa tr:nth-child(even) {
-    background-color: #fafafa; /* Filas alternas muy claras */
+    background-color: #fafafa;
 }
 
 .programa tr:hover {
-    background-color: #f1f7fc; /* Resalta fila al pasar mouse */
+    background-color: #f1f7fc;
 }
 
-/* Coffee Break centrado */
+/* Estilo para filas que abarcan todo (ej. Coffee Break) */
 .programa td[colspan="3"] {
     text-align: center;
     font-weight: bold;
-    background-color: #e0e0e0; /* Gris suave */
-}
-
-/* Opcional: bordes redondeados para la tabla */
-.programa table {
-    border-radius: 8px;
-    overflow: hidden;
-}
-.hero-credit {
-    position: absolute;
-    bottom: 10px;       /* cerca del borde inferior */
-    right: 10px;        /* alineado a la derecha, puedes usar left: 10px; si quieres a la izquierda */
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.8); /* blanco semitransparente */
-    font-style: italic;
-}
-.hero-image {
-    width: 250px; /* Ajusta el tamaño */
-    height: auto;
-    margin-top: 20px; /* Separación del texto */
-    border-radius: 10px; /* opcional, bordes redondeados */
-}
-.semblanza-link a {
-    color: beige;
-    font-weight: bold;  /* opcional */
-}
-.hero-content h1 {
-    font-size: 3rem;      /* muy grande */
-    font-weight: 500;
+    background-color: #e0e0e0;
 }
 
 
-.hero-content h2 {
-    font-size: 3rem;      /* muy grande */
-    font-weight: 500;
-}
-
-.hero-content h3 {
-    font-size: 2.2rem;
-    font-weight: 500;
-}
-
-.hero-content h4 {
-    font-size: 1.8rem;
-    font-weight: 400;
-}
-
-.hero-content h5 {
-    font-size: 1.4rem;
-    font-weight: 300;
-    font-style: italic;   /* opcional */
-}
+/* ========================================================================= */
+/* 9. Póster */
+/* ========================================================================= */
 .poster-section {
     padding: 40px 20px;
     text-align: center;
@@ -473,49 +393,85 @@ footer {
     background-color: #0056b3;
 }
 
-
-.hero {
-    position: relative;
+/* ========================================================================= */
+/* 10. Logos Sección Final */
+/* ========================================================================= */
+.logos-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 20px;
 }
 
-/* Contenedor fijo para los logos */
-.hero-logos-fixed {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
+.logos-container {
     display: flex;
-    justify-content: space-between;   /* uno a la izquierda, otro a la derecha */
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    padding: 0 100px;                  /* separación del borde */
-    pointer-events: none;             /* no bloquea clics del menú */
+    gap: 150px;
 }
 
-/* Tamaño de los logos */
-.hero-logos-fixed img {
-    width: 120px;     /* ajusta a tu gusto */
-    height: auto;
-    pointer-events: auto; /* permite clic si lo necesitas */
-}
-.iyq-scale {
-    transform: scale(1.5);  /* <-- cambia a tu gusto */
-    transform-origin: top right; /* evita que se mueva */
+.logos-container img {
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
+    transition: transform 0.3s;
 }
 
-/* Forzar salto instantáneo */
-html, body {scroll-behavior: auto !important;
+.logos-container img:hover {
+    transform: scale(1.1);
 }
-.hero {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    aspect-ratio: 16/9;   /* fuerza proporción correcta en monitores */
+
+/* ========================================================================= */
+/* 11. Footer */
+/* ========================================================================= */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #162456;
 }
+
+/* ========================================================================= */
+/* 12. Responsive */
+/* ========================================================================= */
 @media (max-width: 768px) {
+    /* Hero */
     .hero {
-        aspect-ratio: auto;       /* permite que en celular se adapte */
-        background-position: center top; 
+        aspect-ratio: auto;
+        background-position: center top;
+        min-height: auto; /* Permite que el hero se adapte a su contenido en móvil */
+        padding-top: 100px; /* Espacio para logos fijos */
+        padding-bottom: 40px;
     }
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    .hero-content h3 {
+        font-size: 1.2rem;
+    }
+    .hero-content .btn {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+
+    /* Logos */
+    .logos-container {
+        gap: 50px;
+    }
+    .logos-container img {
+        width: 120px;
+        height: 80px;
+    }
+
+    /* Logos fijos en el Hero */
+    .hero-logos-fixed {
+        padding: 0 20px; /* Reducir padding en móvil */
+        justify-content: space-around;
+    }
+
+    /* Nota: Se eliminó el media query complejo para la tabla que usaba `.tabla-programa`
+       ya que la nueva tabla con `.programa` no lo necesita. */
 }
-
-
