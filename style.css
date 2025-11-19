@@ -39,7 +39,7 @@ body {
     overflow: hidden;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1920px) {
     .hero {
         background-attachment: scroll !important;
         background-position: center top;
@@ -517,4 +517,5 @@ html, body {scroll-behavior: auto !important;
         background-position: center top; 
     }
 }
+
 
