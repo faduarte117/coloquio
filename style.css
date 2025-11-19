@@ -24,20 +24,32 @@ body {
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* se adapta mejor en móviles */
-    background-image: url('fondo2.jpeg');
-    background-size: cover;      /* Ajusta sin deformarse */
-    background-position: center; /* Centra la imagen */
-    background-repeat: repeat;
-    background-attachment: fixed; /* Opcional: efecto "parallax" */
-    
+    min-height: 100vh;
+
+    background-image: url("fondo2.jpeg");
+    background-size: cover;       /* fondo cubre toda la pantalla sin deformarse */
+    background-position: center;  /* centra la imagen */
+    background-repeat: no-repeat; /* nunca repetir */
+    background-attachment: scroll; /* evita fallos en celulares */
+
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
     overflow: hidden;
 }
+
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll !important;
+        background-position: center top;
+    }
+}
+
+
+
+
+
 
 .hero::before {
     content: "";
